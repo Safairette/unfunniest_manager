@@ -30,7 +30,7 @@ export const posts = createTable(
     updatedAt: int("updatedAt", { mode: "timestamp" }).$onUpdate(
       () => new Date()
     ),
-    storedPass: text("password", {length: 256 })
+    storedPass: text("password", {length: 256 }).notNull()
   },
   (example) => ({
     createdByIdIdx: index("created_by_idx").on(example.createdById),
