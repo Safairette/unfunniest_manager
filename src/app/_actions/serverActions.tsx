@@ -28,7 +28,7 @@ export async function UnencryptPass(id: number, creator: string, iv: string, sal
     })
     if(!output) return "this should never happen";
     const encryptedPass = output.storedPass;
-    const normBuffer = bufferInput.normalize()
+    const normBuffer = bufferInput.normalize();
     const decPass = Buffer.from(encryptedPass, 'hex');
     const decSalt = Buffer.from(salt, 'hex');
     const decIv = Buffer.from(iv, 'hex');
