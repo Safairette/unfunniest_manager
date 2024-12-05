@@ -23,7 +23,7 @@ async function CoreContent(){
 
   return(
     <div className="flex flex-wrap p-2">
-      {items.map((post) => (<PasswordDiv key={post.id} name={post.name} pass={post.storedPass} />))}
+      {items.map((post) => (<PasswordDiv key={post.id} name={post.name} pass={post.storedPass} id={post.id} creator={post.createdById} iv={post.iv} salt={post.salt} />))}
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import { relations, sql } from "drizzle-orm";
 import {
+  blob,
   index,
   int,
   primaryKey,
@@ -20,7 +21,7 @@ export const posts = createTable(
   "post",
   {
     id: int("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
-    name: text("name", { length: 256 }),
+    name: text("name", { length: 256 }).notNull(),
     createdById: text("created_by", { length: 255 })
       .notNull()
       .references(() => users.id),
@@ -30,7 +31,9 @@ export const posts = createTable(
     updatedAt: int("updatedAt", { mode: "timestamp" }).$onUpdate(
       () => new Date()
     ),
-    storedPass: text("password", {length: 256 }).notNull()
+    storedPass: text("password", {length: 256 }).notNull(),
+    iv: text("iv", {length: 256}).notNull(),
+    salt: text("salt", { length: 256}).notNull()
   },
   (example) => ({
     createdByIdIdx: index("created_by_idx").on(example.createdById),
@@ -73,6 +76,7 @@ export const accounts = createTable(
     scope: text("scope", { length: 255 }),
     id_token: text("id_token"),
     session_state: text("session_state", { length: 255 }),
+    refresh_token_expires_in: int("refresh_token_expires_in"),
   },
   (account) => ({
     compoundKey: primaryKey({
