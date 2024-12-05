@@ -5,7 +5,6 @@ import { posts } from "~/server/db/schema";
 import { PasswordDiv } from "./_components/clientComps";
 
 export default async function HomePage() {
-  const session = await auth();
   return (
     <main className="flex flex-col min-h-svh bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
      <CoreContent />
@@ -23,7 +22,7 @@ async function CoreContent(){
 
   return(
     <div className="flex flex-wrap p-2">
-      {items.map((post) => (<PasswordDiv key={post.id} name={post.name} pass={post.storedPass} id={post.id} creator={post.createdById} iv={post.iv} salt={post.salt} />))}
+      {items.map((post) => (<PasswordDiv key={post.id} name={post.name} id={post.id} creator={post.createdById} iv={post.iv} salt={post.salt} />))}
     </div>
   )
 }

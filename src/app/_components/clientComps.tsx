@@ -1,9 +1,8 @@
 "use client"
 
-import { useActionState, useState } from "react";
 import { useToast } from "~/hooks/use-toast"
 import { RequestDelete, UnencryptPass } from "../_actions/serverActions";
-import { auth } from "~/server/auth";
+import { useState } from "react";
 
 export function FormSubmitBtn(){
     const { toast } = useToast();
@@ -15,7 +14,7 @@ export function FormSubmitBtn(){
     )
 }
 
-export function PasswordDiv({name, pass, id, creator, iv, salt}: {name: string, pass: string, id: number, creator: string, iv: string, salt: string}){
+export function PasswordDiv({name, id, creator, iv, salt}: {name: string, id: number, creator: string, iv: string, salt: string}){
     const [testo, setTesto] = useState(true);
     const [revealed, setRevealed] = useState(false);
     const [passState, setPassState] = useState("loading...");
@@ -29,7 +28,7 @@ export function PasswordDiv({name, pass, id, creator, iv, salt}: {name: string, 
 
     function HandleDelete(){
         Hide();
-        RequestDelete(id, creator);
+        void RequestDelete(id, creator);
     }
 
     async function HandleReveal(){

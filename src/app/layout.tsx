@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import { TopNav } from "./_components/comps";
 import { Toaster } from "~/components/ui/toaster";
+import React from "react";
 
 export const metadata: Metadata = {
   title: "Unfunniest",

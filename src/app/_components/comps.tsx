@@ -1,16 +1,14 @@
 import { auth } from "~/server/auth";
 import { SignInBtn, SignOutBtn } from "./authComps";
 import Link from "next/link";
-import Form from "next/form";
-import { useToast } from "~/hooks/use-toast";
 
 export function TopNav(){
     return (
       <nav className="flex items-center justify-between border-b w-full p-4 text-xl font-semibold bg-black text-white">
         <div><Link href="/">Top bar (waow)</Link></div>
         <div>
-					<UserBtn />
-				</div>
+			<UserBtn />
+		</div>
       </nav>
     )
   }
@@ -31,7 +29,7 @@ export async function UserBtn(){
 	return (
 		<div className="flex">
 			<NewPassBtn />
-			<img className="h-8 w-8 mr-2 rounded-full" src={session.user.image ?? undefined}></img>
+			<img alt={'Profile picture'} className="h-8 w-8 mr-2 rounded-full" src={session.user.image ?? undefined}></img>
 			<SignOutBtn />
 		</div>
 	)

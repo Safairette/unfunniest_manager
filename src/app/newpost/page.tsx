@@ -24,7 +24,7 @@ export default async function NewPostPage(){
         const salt = crypto.randomBytes(32);
         const iv = crypto.randomBytes(16);
 
-        let tempKey = pbkdf2Sync(normalizedKey, salt, 100000, 32, 'sha256')
+        const tempKey = pbkdf2Sync(normalizedKey, salt, 100000, 32, 'sha256')
         
         const cipher = crypto.createCipheriv('aes-256-cbc', tempKey, iv);
         let encrypted = cipher.update(passInput, 'utf8', encoding);

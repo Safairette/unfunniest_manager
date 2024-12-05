@@ -34,7 +34,7 @@ export async function UnencryptPass(id: number, creator: string, iv: string, sal
     const decIv = Buffer.from(iv, 'hex');
 
     try{
-        let tempKey = pbkdf2Sync(normBuffer, decSalt, 100000, 32, 'sha256');
+        const tempKey = pbkdf2Sync(normBuffer, decSalt, 100000, 32, 'sha256');
         const cipher = crypto.createDecipheriv('aes-256-cbc', tempKey, decIv);
         const final = cipher.update(decPass);
         const finalest = Buffer.concat([final, cipher.final()]).toString();
