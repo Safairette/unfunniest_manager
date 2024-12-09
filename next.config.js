@@ -4,7 +4,31 @@
  */
 import "./src/env.js";
 
+const cspHeader = `
+    script-src 'self' 'unsafe-eval' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline';
+    font-src 'self';
+    object-src 'none';
+    base-uri 'self';
+    frame-ancestors 'none';
+    upgrade-insecure-requests;
+`
+
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+    async headers(){
+        return [
+            {
+              source: '/(.*)',
+              headers: [
+                {
+                  key: 'Content-Security-Policy',
+                  value: cspHeader.replace(/\n/g, ''),
+                },
+              ],
+            },
+          ]
+    }
+};
 
 export default config;
