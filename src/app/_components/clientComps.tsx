@@ -32,9 +32,10 @@ export function PasswordDiv({name, id, creator, iv, salt}: {name: string, id: nu
     }
 
     async function HandleReveal(){
-        Reveal()
+        Reveal();
         const decrypted = await UnencryptPass(id, creator, iv, salt, buffer);
-        WritePass(decrypted)
+        WritePass(decrypted);
+        setBuffer('');
     }
 
     if(!testo) return null;
